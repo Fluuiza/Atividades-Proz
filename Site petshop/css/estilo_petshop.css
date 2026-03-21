@@ -225,6 +225,18 @@ table.tabela-horario tr:nth-child(even) {
     margin-top: 50px;
 }
 
+@media print {
+  .botao-imprimir {
+    display : none; /* Esconde o botão de imprimir na impressão */
+  }
+
+  @page {
+  size: auto; /* Define o tamanho da página para automático */
+  margin: 0mm; /* Remove as margens da página para impressão */
+
+  }
+}
+
 
 /* ============================= */
 /* PAGINA INSTITUCIONAL           */
