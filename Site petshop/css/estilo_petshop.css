@@ -225,30 +225,36 @@ table.tabela-horario tr:nth-child(even) {
     margin-top: 50px;
 }
 
+@media print {
+  .botao-imprimir {
+    display : none; /* Esconde o botão de imprimir na impressão */
+  }
+
+  @page {
+  size: auto; /* Define o tamanho da página para automático */
+  margin: 0mm; /* Remove as margens da página para impressão */
+
+  }
+}
+
 
 /* ============================= */
-/* PAGINA INSTITUCIONAL           */
+/* PAGINA SOBRE NOS           */
 /* ============================= */
 
 .quadrado {
-    width: 37.5rem;
-    min-height: 46.8rem;
+    width: 100rem;
+    min-height: 45.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #299dd32d;
-    border-radius: 15px;
-    padding: 20px;
-
+    border-radius: 30px;
+    padding: 50px;
+    font-size: 1.75rem;
     display: flex;
     flex-direction: column;     /* texto um abaixo do outro */
     justify-content: flex-start;    /* centraliza vertical */
     align-items: center;        /* centraliza horizontal */
     text-align: center;
-}
-
-.redes-container {
-    display: flex;              /* coloca os elementos lado a lado */
-    justify-content: center;    /* centraliza horizontalmente */
-    gap: 20px;                  /* espaço entre as imagens */
-    margin-top: 20px;           /* opcional: distância do conteúdo acima */
 }
 
 .img-redimensionada {
@@ -259,10 +265,85 @@ table.tabela-horario tr:nth-child(even) {
     transition: transform 0.3s ease; /* efeito suave de zoom */
 }
 
-.img-redimensionada:hover {
-    transform: scale(1.1);      /* aumenta 10% ao passar o mouse */
+.titulo {
+    font-family: 'Segoe UI', system-ui, sans-serif; /* Garante uma fonte limpa */
+    font-size: 2.5rem;
+    font-weight: 800;           /* Extra bold para máxima autoridade */
+    color: #0f3955;
+    
+    text-transform: uppercase;  /* Tudo em maiúsculo dá um ar corporativo sério */
+    letter-spacing: 3px;         /* Espaço entre as letras para respirar e dar elegância */
+    
+    margin-top: 3.5rem;          /* Espaço extra ACIMA para separar as seções (como 'Visão' de 'Missão') */
+    margin-bottom: 1rem;         /* Espaço menor ABAIXO para "conectar" o título ao texto */
+    
+    position: relative;          /* Prepara para um efeito visual opcional */
 }
 
+/* Opcional: Uma barrinha decorativa abaixo do título */
+.titulo::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #165877;  /* Um azul mais claro para contraste */
+    margin: 10px auto 0;       /* Centraliza a barra e dá espaço */
+    border-radius: 2px;
+}
+
+/* Arrumando o título das redes sociais */
+h4 {
+    margin-top: 40px;           /* Afasta o "REDES SOCIAIS" dos valores */
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Sua classe de container das redes */
+.redes-container {
+    display: flex;
+    justify-content: center;    /* Centraliza os ícones horizontalmente */
+    gap: 30px;                  /* Cria o espaçamento entre os logos */
+    margin-top: 20px;
+}
+
+/* Estilizando a lista de valores que está dentro do seu .quadrado */
+.quadrado ul {
+    list-style-position: inside; /* Alinha a bolinha com o texto */
+    text-align: left;           /* Mantém o texto lido da esquerda para a direita */
+    display: inline-block;      /* Faz o bloco ficar centralizado, mas o texto alinhado à esquerda */
+    margin: 20px 0 40px 0;      /* Espaço em cima e embaixo da lista */
+    padding: 0;
+}
+
+.quadrado li {
+    font-size: 1.6rem;
+    line-height: 2;             /* Dá o respiro necessário entre as linhas */
+    margin-bottom: 10px;
+    list-style-type: disc;      /* Garante que a bolinha apareça */
+}
+
+/* Arrumando o título das redes sociais */
+h4 {
+    margin-top: 40px;           /* Afasta o "REDES SOCIAIS" dos valores */
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Sua classe de container das redes */
+.redes-container {
+    display: flex;
+    justify-content: center;    /* Centraliza os ícones horizontalmente */
+    gap: 30px;                  /* Cria o espaçamento entre os logos */
+    margin-top: 20px;
+}
+
+.img-redimensionada:hover {
+    transform: scale(1.1);      /* Dá um leve destaque ao passar o mouse */
+}
 /* ============================= */
 /* DEPOIMENTOS           */
 /* ============================= */
