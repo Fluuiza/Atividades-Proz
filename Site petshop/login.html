@@ -1,131 +1,196 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Cadastro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetShopTeuz</title>
+
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-/* FUNDO */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #202020;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2D9CDB, #6B4F3B);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* OVERLAY */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.85);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  width: 350px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* CAIXA */
-.popup {
-    background: #2c2c2c;
-    padding: 30px;
-    border-radius: 12px;
-    width: 280px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #6B4F3B;
+  margin-bottom: 10px;
 }
 
-/* TÍTULO */
-.popup h1 {
-    margin-bottom: 20px;
-    color: #ffffff;
+p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
 }
 
-/* INPUTS */
-.popup input {
-    width: 91%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: none;
-    border-radius: 6px;
-    outline: none;
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
-/* BOTÃO */
-.popup button {
-    width: 100%;
-    padding: 10px;
-    background: #3bb1ff;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1B6CA8, #2D9CDB);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.popup button:hover {
-    background: #448aff;
+.link {
+  display: block;
+  margin: 10px 0;
+  font-size: 13px;
+  color: #1B6CA8;
+  cursor: pointer;
 }
 
-/* MENSAGEM */
-#msg {
-    margin-top: 10px;
-    color: #00e676;
+.register {
+  margin-top: 15px;
+  font-size: 14px;
 }
 
+.hidden {
+  display: none;
+}
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
-    <div class="popup">
+<div class="card">
 
-        <h1>Cadastro</h1>
+  <div class="logo">🐾 PetShopTeuz</div>
 
-        <input type="text" id="usuario" placeholder="Usuário">
-        <input type="password" id="senha" placeholder="Senha">
+  <!-- LOGIN -->
+  <div id="login">
+    <h2>Bem-vindo!</h2>
+    <p>Cuide do seu melhor amigo ❤️</p>
 
-        <button onclick="cadastrar()">Cadastrar</button>
+   <div class="input-group">
+    <input type="email" id="loginEmail" placeholder=" ">
+    <label>Email</label>
+</div>
 
-        <h3 id="msg"></h3>
+<div class="input-group">
+  <input type="password" id="loginSenha" placeholder=" ">
+  <label>Senha</label>
+</div>
 
+    <span class="link" onclick="mostrar('esqueci')">Esqueci minha senha</span>
+
+    <button onclick="login()">Entrar</button>
+
+    <div class="register">
+      Não tem conta? <span class="link" onclick="mostrar('cadastro')">Criar agora</span>
     </div>
+  </div>
+
+  <!-- CADASTRO -->
+  <div id="cadastro" class="hidden">
+    <h2>Criar Conta</h2>
+    <p>Cadastre-se agora 🐶</p>
+
+    <input type="text" id="nome" placeholder="Seu nome">
+    <input type="email" id="cadEmail" placeholder="Seu e-mail">
+    <input type="password" id="cadSenha" placeholder="Sua senha">
+
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <span class="link" onclick="mostrar('login')">Voltar para login</span>
+  </div>
+
+  <!-- ESQUECI SENHA -->
+  <div id="esqueci" class="hidden">
+    <h2>Recuperar Senha</h2>
+    <p>Digite seu e-mail 📧</p>
+
+    <input type="email" id="recEmail" placeholder="Seu e-mail">
+
+    <button onclick="recuperar()">Enviar</button>
+
+    <span class="link" onclick="mostrar('login')">Voltar para login</span>
+  </div>
+
 </div>
 
 <script>
+// Trocar telas
+function mostrar(tela) {
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("cadastro").classList.add("hidden");
+  document.getElementById("esqueci").classList.add("hidden");
 
-function cadastrar() {
-
-    let user = document.getElementById("usuario").value.trim();
-    let pass = document.getElementById("senha").value.trim();
-
-    if (user === "" || pass === "") {
-        document.getElementById("msg").style.color = "#ff5252";
-        document.getElementById("msg").innerText = "Preencha todos os campos!";
-        return;
-    }
-
-    localStorage.setItem("usuario", user);
-    localStorage.setItem("senha", pass);
-
-    document.getElementById("msg").style.color = "#00e676";
-    document.getElementById("msg").innerText = "Cadastro realizado com sucesso!";
-
-    // limpa campos
-    document.getElementById("usuario").value = "";
-    document.getElementById("senha").value = "";
-
-    if (document.getElementById("msg").innerText === "Cadastro realizado com sucesso!") {
-        setTimeout(() => {
-            window.location.href = "conteudo.html";
-        }, 1500);
-    }
+  document.getElementById(tela).classList.remove("hidden");
 }
 
+// Login
+function login() {
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginSenha").value;
+
+  if (!email || !senha) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  alert("Login realizado com sucesso!");
+}
+
+// Cadastro
+function cadastrar() {
+  const nome = document.getElementById("nome").value;
+  const email = document.getElementById("cadEmail").value;
+  const senha = document.getElementById("cadSenha").value;
+
+  if (!nome || !email || !senha) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  alert("Conta criada com sucesso!");
+  mostrar('login');
+}
+
+// Recuperar senha
+function recuperar() {
+  const email = document.getElementById("recEmail").value;
+
+  if (!email) {
+    alert("Digite seu e-mail!");
+    return;
+  }
+
+  alert("Link de recuperação enviado!");
+  mostrar('login');
+}
 </script>
 
 </body>
